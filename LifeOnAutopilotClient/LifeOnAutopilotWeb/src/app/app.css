@@ -3,3 +3,10 @@
   src: url('../../assets/fonts/Open_Sans/static/OpenSans-Regular.ttf');
 }
 
+.main-title {
+  margin: 30px;
+}
+
+.mat-list-item {
+  margin: 10px!important;
+}
