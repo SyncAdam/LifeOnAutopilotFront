@@ -14,7 +14,7 @@
 
             <mat-nav-list>
             @for (nav of navButtons; track $index) {
-                <a mat-list-item class="navButton" [routerLink]="[nav]" >{{nav}}</a>
+                <a mat-list-item class="navButton" [routerLink]="[nav]" (click)="snav.toggle()" >{{nav}}</a>
             }
             </mat-nav-list>
 
