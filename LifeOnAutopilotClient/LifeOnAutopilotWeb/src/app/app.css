@@ -3,10 +3,18 @@
   src: url('../../assets/fonts/Open_Sans/static/OpenSans-Regular.ttf');
 }
 
+.sidenav-container {
+  height: 100vh;
+}
+
 .main-title {
   margin: 30px;
 }
 
 .mat-list-item {
   margin: 10px!important;
+}
+
+.mat-sidenav-content {
+  height: max-content;
 }
