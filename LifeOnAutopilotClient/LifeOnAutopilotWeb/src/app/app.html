@@ -1,7 +1,7 @@
 <main class="main">
-    <div class="example-container" [class.example-is-mobile]="isMobile()">
+    <div class="container" [class.is-mobile]="isMobile()">
 
-        <mat-toolbar class="example-toolbar">
+        <mat-toolbar class="toolbar">
             <button matIconButton (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
             <h1 class="main-title">LifeOnAutopilot</h1>
         </mat-toolbar>
@@ -14,7 +14,9 @@
 
             <mat-nav-list>
             @for (nav of navButtons; track $index) {
-                <a mat-list-item class="navButton" [routerLink]="[nav]" (click)="snav.toggle()" >{{nav}}</a>
+                <button mat-list-item class="navButton" (click)="snav.toggle()" [routerLink]="[nav]">
+                    <a>{{nav}}</a>
+                </button>
             }
             </mat-nav-list>
 

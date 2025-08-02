@@ -7,6 +7,10 @@
   height: 100vh;
 }
 
+.mat-sidenav-content {
+  height: max-content;
+}
+
 .main-title {
   margin: 30px;
 }
@@ -15,6 +19,6 @@
   margin: 10px!important;
 }
 
-.mat-sidenav-content {
-  height: max-content;
+.navButton {
+  border-width: 0;
 }

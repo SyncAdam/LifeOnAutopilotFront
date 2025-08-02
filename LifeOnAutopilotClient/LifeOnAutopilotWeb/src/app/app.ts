@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, HostListener, signal } from '@angular/core';
 import { RouterOutlet, RouterModule} from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -16,5 +16,21 @@ export class App {
   protected readonly title = 'LifeOnAutopilot';
   protected readonly navButtons = ["Home", "Meals", "Finance", "Calendar"];
 
-  isMobile = signal(false);  
+  screenHeight: number = window.innerHeight;
+  screenWidth: number = window.innerWidth;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event?: any) {
+    this.screenHeight = window.innerHeight;
+    this.screenWidth = window.innerWidth;
+  } 
+
+  isMobile = signal(this.getMobile());
+
+  getMobile() {
+    if (this.screenWidth < 800)
+      return true;
+    else
+      return false;
+  }
 }
