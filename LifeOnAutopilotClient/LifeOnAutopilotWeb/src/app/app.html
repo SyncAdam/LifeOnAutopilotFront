@@ -1,5 +1,5 @@
 <main class="main">
-    <div class="container" [class.is-mobile]="isMobile()">
+    <div class="container" [class.is-mobile]="isMobile()" cdkScrollable="false" >
 
         <mat-toolbar class="toolbar">
             <button matIconButton (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
