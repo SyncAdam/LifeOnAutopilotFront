@@ -14,7 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 })
 export class App {
   protected readonly title = 'LifeOnAutopilot';
-  protected readonly navButtons = ["Home", "Meals", "Finance", "Calendar"];
+  protected readonly navButtons = ["Home", "Meals", "Finance", "Inventory"];
 
   screenHeight: number = window.innerHeight;
   screenWidth: number = window.innerWidth;
