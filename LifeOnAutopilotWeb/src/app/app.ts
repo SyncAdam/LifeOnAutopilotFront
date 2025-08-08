@@ -6,6 +6,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { UserProfileService } from './services/user-profile';
+
+import KeyCloak, { KeycloakProfile } from 'keycloak-js';
+
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, RouterModule, MatToolbarModule, MatButtonModule, MatIconModule, MatSidenavModule, MatListModule],
@@ -15,6 +19,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 export class App {
   protected readonly title = 'LifeOnAutopilot';
   protected readonly navButtons = ["Home", "Meals", "Finance", "Inventory"];
+
+  constructor(private userProfileService: UserProfileService)
+  {
+    console.log("Running app...");
+  }
 
   screenHeight: number = window.innerHeight;
   screenWidth: number = window.innerWidth;
