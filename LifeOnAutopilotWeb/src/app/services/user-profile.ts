@@ -12,14 +12,18 @@ export class UserProfileService {
     this.Init();
   }
 
-  private profile =  new BehaviorSubject<KeycloakProfile | null>(null);
-  Profile$: Observable<KeycloakProfile | null> = this.profile.asObservable();
+  profile :KeycloakProfile | null = null;
 
   keycloak:Keycloak = new Keycloak({
     url: "https://sibulabs.net",
     realm: "master",
     clientId: "LifeOnAutopilot"
   });
+
+  logout()
+  {
+    this.keycloak.logout();
+  }
 
   async Init()
   {
@@ -29,7 +33,7 @@ export class UserProfileService {
           console.log('User is authenticated');
           this.keycloak.loadUserInfo();
           const profile = await this.keycloak.loadUserProfile();
-          this.profile.next(profile);
+          this.profile = profile
           console.log(`User ${profile.username} is now logged in.`);
       } else {  
           console.log('User is not authenticated');
@@ -41,7 +45,7 @@ export class UserProfileService {
     } 
   }
 
-  getProfile(): Observable<KeycloakProfile | null>{
-    return this.Profile$;
+  getProfile(): KeycloakProfile | null{
+    return this.profile;
   }
 }

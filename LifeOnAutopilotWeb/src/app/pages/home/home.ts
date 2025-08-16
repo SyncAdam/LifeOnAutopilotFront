@@ -1,22 +1,29 @@
-import { Component, OnInit,  } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 import { UserProfileService } from '../../services/user-profile';
 import { KeycloakProfile } from 'keycloak-js';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'loa-home',
-  imports: [],
   templateUrl: './home.html',
-  styleUrl: './home.css'
+  styleUrl: './home.css',
+  imports: [TitleCasePipe]
 })
 export class Home implements OnInit{
   profile?: KeycloakProfile | null
   constructor(private userProfileService: UserProfileService) {}
 
   ngOnInit() {
-    this.userProfileService.Profile$.subscribe(p => {
-      console.log("Subscribed from home.");
-      this.profile = p;
-    });
+    this.profile = this.userProfileService.getProfile();
+  }
+
+  logoutUser()
+  {
+    this.userProfileService.logout();
+  }
+
+  getUsername()
+  {
+    this.profile = this.userProfileService.getProfile();
   }
 }

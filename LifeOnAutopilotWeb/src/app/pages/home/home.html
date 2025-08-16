@@ -1,6 +1,13 @@
 <div class="container">
     <div>
         <h1>This is the home view</h1>
-        <h2>Welcome to the site, {{profile?.firstName}}.</h2>
+        <button (click)="getUsername()">Fetch user</button>
+        <button (click)="logoutUser()">Log out</button>
+        @if (profile == null) {
+            <h2 >Welcome to the site, user.</h2>
+        }
+        @else {
+            <h2 >Welcome to the site, {{profile.username | titlecase}}.</h2>
+        }
     </div>
 </div>
