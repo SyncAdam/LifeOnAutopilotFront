@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, resource } from '@angular/core';
 import { UserProfileService } from '../../services/user-profile';
 import { KeycloakProfile } from 'keycloak-js';
 import { TitleCasePipe } from '@angular/common';
@@ -9,21 +9,11 @@ import { TitleCasePipe } from '@angular/common';
   styleUrl: './home.css',
   imports: [TitleCasePipe]
 })
-export class Home implements OnInit{
-  profile?: KeycloakProfile | null
-  constructor(private userProfileService: UserProfileService) {}
-
-  ngOnInit() {
-    this.profile = this.userProfileService.getProfile();
-  }
+export class Home{
+  constructor(public userProfileService: UserProfileService) {}
 
   logoutUser()
   {
     this.userProfileService.logout();
-  }
-
-  getUsername()
-  {
-    this.profile = this.userProfileService.getProfile();
   }
 }

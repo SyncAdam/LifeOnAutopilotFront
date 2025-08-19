@@ -1,7 +1,6 @@
 // user-profile.service.ts
-import { Injectable } from '@angular/core';
+import { computed, Injectable, signal, Signal } from '@angular/core';
 import Keycloak, { KeycloakProfile } from 'keycloak-js'; // or your specific import
-import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +11,11 @@ export class UserProfileService {
     this.Init();
   }
 
-  profile :KeycloakProfile | null = null;
+  private _profile = signal<KeycloakProfile | null>(null);
+  Profile = this._profile.asReadonly();
 
   keycloak:Keycloak = new Keycloak({
-    url: "https://sibulabs.net",
+    url: "https://sibulabs.net/realms/master",
     realm: "master",
     clientId: "LifeOnAutopilot"
   });
@@ -31,10 +31,11 @@ export class UserProfileService {
       const authenticated = await this.keycloak.init({ onLoad:'login-required' });
       if (authenticated) {
           console.log('User is authenticated');
-          this.keycloak.loadUserInfo();
-          const profile = await this.keycloak.loadUserProfile();
-          this.profile = profile
-          console.log(`User ${profile.username} is now logged in.`);
+
+          this.keycloak.loadUserProfile().then(item => {this._profile.set(item)});
+
+          if(this._profile != null)
+            console.log(`User is now logged in.`);
       } else {  
           console.log('User is not authenticated');
       }
@@ -43,9 +44,5 @@ export class UserProfileService {
     {
       console.error('Failed to initialize adapter:', error);
     } 
-  }
-
-  getProfile(): KeycloakProfile | null{
-    return this.profile;
   }
 }
