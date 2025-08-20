@@ -15,7 +15,7 @@ export class UserProfileService {
   Profile : Subject<KeycloakProfile> = new Subject;
 
   keycloak:Keycloak = new Keycloak({
-    url: "https://sibulabs.net/realms/master",
+    url: "https://sibulabs.net",
     realm: "master",
     clientId: "LifeOnAutopilot"
   });
