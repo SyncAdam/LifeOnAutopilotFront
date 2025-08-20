@@ -10,7 +10,11 @@ import { TitleCasePipe } from '@angular/common';
   imports: [TitleCasePipe]
 })
 export class Home{
-  constructor(public userProfileService: UserProfileService) {}
+  public profile: KeycloakProfile | null = null;
+  constructor(public userProfileService: UserProfileService) 
+  {
+    this.userProfileService.Profile.subscribe(v => this.profile = v);
+  }
 
   logoutUser()
   {

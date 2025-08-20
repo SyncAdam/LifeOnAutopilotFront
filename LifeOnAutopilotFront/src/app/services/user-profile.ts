@@ -1,6 +1,7 @@
 // user-profile.service.ts
 import { computed, Injectable, signal, Signal } from '@angular/core';
 import Keycloak, { KeycloakProfile } from 'keycloak-js'; // or your specific import
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,7 @@ export class UserProfileService {
     this.Init();
   }
 
-  private _profile = signal<KeycloakProfile | null>(null);
-  Profile = this._profile.asReadonly();
+  Profile : Subject<KeycloakProfile> = new Subject;
 
   keycloak:Keycloak = new Keycloak({
     url: "https://sibulabs.net/realms/master",
@@ -31,10 +31,9 @@ export class UserProfileService {
       const authenticated = await this.keycloak.init({ onLoad:'login-required' });
       if (authenticated) {
           console.log('User is authenticated');
+          this.Profile.next(await this.keycloak.loadUserProfile());
 
-          this.keycloak.loadUserProfile().then(item => {this._profile.set(item)});
-
-          if(this._profile != null)
+          if(this.Profile != null)
             console.log(`User is now logged in.`);
       } else {  
           console.log('User is not authenticated');

@@ -3,6 +3,6 @@
         <h1>This is the home view</h1>
         <button (click)="logoutUser()">Log out</button>
 
-        <h2 >Welcome to the site, {{ userProfileService.Profile()?.username | titlecase}}.</h2>
+        <h2 >Welcome to the site, {{ profile?.username ?? 'user' | titlecase}}.</h2>
     </div>
 </div>
