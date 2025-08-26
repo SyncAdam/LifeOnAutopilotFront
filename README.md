@@ -1,8 +1,19 @@
+<div align="center"> 
+
+<img src="Resources/Readme/loalogo.png" width=33%/>
+
 # LifeOnAutopilot
 
-This project is the source of a website, that lets you track your home inventory and finance.
-It is curretly under developpement.
+##### Life made easier
 
-## Features
+</div>
 
-- Authentification - under development
+---
+
+## Table of contents
+
+- [Introduction](#introduction)
+
+## Introduction
+
+This project is a website, that lets you track your home inventory and finance. It is currently under development.
