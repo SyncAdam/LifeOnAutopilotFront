@@ -1,7 +1,3 @@
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
-
 namespace LifeOnAutopilot;
 
 class Program

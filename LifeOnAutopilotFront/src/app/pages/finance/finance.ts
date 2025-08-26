@@ -14,6 +14,6 @@ export class Finance {
   
   constructor()
   {
-    this.http.get('http://localhost:5046/', { responseType:'json' }).subscribe(item => {this.myVar = item; console.log(item)});
+    this.http.get('http://localhost:5046/', { responseType:'json' }).subscribe(item => {this.myVar = item});
   }
 }
