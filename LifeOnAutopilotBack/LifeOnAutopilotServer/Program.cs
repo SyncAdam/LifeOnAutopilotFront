@@ -1,5 +1,10 @@
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
+
 namespace LifeOnAutopilot;
-static class Program
+
+class Program
 {
     public static void Main()
     {
@@ -16,10 +21,20 @@ static class Program
             config.Version = "v1.0.0";
         });
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy(name: "AllowLoaOrigins",
+                                policy =>
+                                {
+                                    policy.WithOrigins("https://sibulabs.net",
+                                                        "http://127.0.0.1:4200");
+                                });
+        });
+
         var host = builder.Build();
 
-        host.MapGet("/", () => "Hello World!");
-
+        host.MapGet("/", () => new { message = "Hello Andreea!" });
+        host.UseCors("AllowLoaOrigins");
         host.UseOpenApi();
         host.UseSwaggerUi();
 
